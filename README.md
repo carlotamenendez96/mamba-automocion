@@ -39,13 +39,8 @@ public/           # Archivos estáticos (si se usan)
 ## Configuración de formularios
 - Los formularios usan [Formspree](https://formspree.io/). Cambia el ID de formulario en los archivos de las páginas de contacto y tasación por el tuyo propio.
 
-## Personalización
-- Cambia imágenes en `assets/` para personalizar vehículos, logotipos y fondos.
-- Modifica los colores y fuentes en el script de configuración de Tailwind en `index.html`.
-
 ## Redes sociales
 - Facebook: [MAMBA Automoción](https://www.facebook.com/p/MaMba-Automocion-100077819027982/)
-- Instagram: (añadir enlace si lo tienes)
 
 ## Licencia
 Proyecto privado para uso exclusivo de MAMBA Automoción.

@@ -1,15 +1,14 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { CarCard, TestimonialCarousel, FeatureCard, IconUser, IconShieldCheck, IconSparkles, IconCar } from '../components/UI';
-import heroImg from '../assets/hero.png';
+import {  TestimonialCarousel, FeatureCard, IconUser, IconShieldCheck, IconSparkles, IconCar } from '@/components/UI';
+import heroImg from '@/assets/hero.png';
 
-const featuredCars = [
-    { imageUrl: 'https://picsum.photos/seed/jeep1/600/400', altText: 'Jeep Wrangler de segunda mano en Asturias', title: 'JEEP Wrangler Unlimited 2.8 CRD Rubicon', price: '34.990 €', year: 2018, kms: '85.000', fuel: 'Diésel' },
-    { imageUrl: 'https://picsum.photos/seed/audi1/600/400', altText: 'Audi A3 de ocasión en Gijón', title: 'AUDI A3 Sportback 2.0 TDI S line', price: '22.500 €', year: 2019, kms: '110.000', fuel: 'Diésel' },
-    { imageUrl: 'https://picsum.photos/seed/bmw1/600/400', altText: 'BMW Serie 3 en venta en Oviedo', title: 'BMW Serie 3 320d Gran Turismo', price: '25.000 €', year: 2017, kms: '95.000', fuel: 'Diésel' },
-    { imageUrl: 'https://picsum.photos/seed/vw1/600/400', altText: 'Volkswagen Golf de segunda mano en Llanera', title: 'VOLKSWAGEN Golf 1.5 TSI EVO R-Line', price: '21.800 €', year: 2020, kms: '75.000', fuel: 'Gasolina' },
-];
+// const featuredCars = [
+//     { imageUrl: 'https://picsum.photos/seed/jeep1/600/400', altText: 'Jeep Wrangler de segunda mano en Asturias', title: 'JEEP Wrangler Unlimited 2.8 CRD Rubicon', price: '34.990 €', year: 2018, kms: '85.000', fuel: 'Diésel' },
+//     { imageUrl: 'https://picsum.photos/seed/audi1/600/400', altText: 'Audi A3 de ocasión en Gijón', title: 'AUDI A3 Sportback 2.0 TDI S line', price: '22.500 €', year: 2019, kms: '110.000', fuel: 'Diésel' },
+//     { imageUrl: 'https://picsum.photos/seed/bmw1/600/400', altText: 'BMW Serie 3 en venta en Oviedo', title: 'BMW Serie 3 320d Gran Turismo', price: '25.000 €', year: 2017, kms: '95.000', fuel: 'Diésel' },
+//     { imageUrl: 'https://picsum.photos/seed/vw1/600/400', altText: 'Volkswagen Golf de segunda mano en Llanera', title: 'VOLKSWAGEN Golf 1.5 TSI EVO R-Line', price: '21.800 €', year: 2020, kms: '75.000', fuel: 'Gasolina' },
+// ];
 
 const testimonials = [
   {

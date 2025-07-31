@@ -1,13 +1,12 @@
-import React from 'react';
-import { HashRouter, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import { Layout } from './components/Layout';
-import { HomePage } from './pages/Home';
-import { AboutPage } from './pages/About';
-import { ServicesPage } from './pages/Services';
-import { VehiclesPage } from './pages/Vehicles';
-import { SellCarPage } from './pages/SellCar';
-import { ContactPage } from './pages/Contact';
+import { Layout } from '@/components/Layout';
+import { HomePage } from '@/pages/Home';
+import { AboutPage } from '@/pages/About';
+import { ServicesPage } from '@/pages/Services';
+import { VehiclesPage } from '@/pages/Vehicles';
+import { SellCarPage } from '@/pages/SellCar';
+import { ContactPage } from '@/pages/Contact';
 
 function App() {
     return (

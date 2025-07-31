@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { IconPhone, IconMail, IconMapPin, IconFacebook, IconInstagram, IconMenu, IconX, IconWhatsApp } from './UI';
-import logo from '../assets/logo.png';
+import { IconPhone, IconMail, IconMapPin, IconFacebook, IconMenu, IconX, IconWhatsApp } from './UI';
+import logo from '@/assets/logo.png';
 
 const MambaLogo = () => (
   <Link to="/" className="font-sans tracking-tighter" aria-label="MAMBA Automoción - Volver al inicio">
@@ -11,9 +11,16 @@ const MambaLogo = () => (
 
 const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
 
-    const navLinkClasses = "px-4 py-2 text-mamba-text-dark hover:text-mamba-blue transition-colors duration-300";
-    const activeLinkClasses = "text-mamba-blue";
+    // Detectar scroll para cambiar el estilo del header
+    useEffect(() => {
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const navItems = [
         { path: "/quienes-somos", label: "Quiénes Somos" },
@@ -22,62 +29,122 @@ const Header = () => {
         { path: "/contacto", label: "Contacto" },
     ];
 
-    console.log('isOpen', isOpen);
-
     return (
         <>
-            <header className="bg-white/80 backdrop-blur-md sticky top-0 z-40 shadow-sm">
+            <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+                scrolled 
+                    ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-100' 
+                    : 'bg-white/80 backdrop-blur-sm'
+            }`}>
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-20">
                         <MambaLogo />
-                        <nav className="hidden lg:flex items-center space-x-2">
+                        
+                        {/* Desktop Navigation */}
+                        <nav className="hidden lg:flex items-center space-x-1">
                             {navItems.map(item => (
-                                <NavLink key={item.path} to={item.path} className={({ isActive }) => `${navLinkClasses} ${isActive ? activeLinkClasses : ''}`}>
-                                    {item.label}
+                                <NavLink 
+                                    key={item.path} 
+                                    to={item.path} 
+                                    className={({ isActive }) => `
+                                        relative px-4 py-2 rounded-lg font-semibold transition-all duration-300 group
+                                        ${isActive 
+                                            ? 'text-mamba-blue bg-blue-50 shadow-sm' 
+                                            : 'text-mamba-text-dark hover:text-mamba-blue hover:bg-gray-50'
+                                        }
+                                    `}
+                                >
+                                    <span className="relative z-10">{item.label}</span>
+                                    {/* Efecto hover */}
+                                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-blue-50 to-blue-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 </NavLink>
                             ))}
                         </nav>
+
+                        {/* CTA Button Desktop */}
                         <div className="hidden lg:block">
-                            <Link to="/vender" className="bg-mamba-blue text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-90 transition-all duration-300 transform hover:scale-105">
-                                Vende Tu Coche
+                            <Link 
+                                to="/vender" 
+                                className="relative bg-gradient-to-r from-mamba-blue to-blue-600 text-white font-bold py-3 px-6 rounded-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105 hover:-translate-y-0.5 group overflow-hidden"
+                            >
+                                <span className="relative z-10">Vende Tu Coche</span>
+                                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                             </Link>
                         </div>
+
+                        {/* Mobile Menu Button */}
                         <div className="lg:hidden">
-                            <button onClick={() => setIsOpen(!isOpen)} aria-label="Abrir menú">
-                                <IconMenu className="w-8 h-8 text-mamba-text-dark" />
+                            <button 
+                                onClick={() => setIsOpen(!isOpen)} 
+                                aria-label="Abrir menú"
+                                className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                            >
+                                <IconMenu className="w-6 h-6 text-mamba-text-dark" />
                             </button>
                         </div>
                     </div>
                 </div>
             </header>
-            {/* Overlay y menú móvil fuera del header y container */}
-            {/* Overlay */}
+
+            {/* Spacer para el contenido debajo del header fijo */}
+            <div className="h-20"></div>
+
+            {/* Mobile Menu Overlay */}
             <div
-                className={`fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity lg:hidden ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+                className={`fixed inset-0 bg-black/50 backdrop-blur-sm z-50 transition-opacity lg:hidden ${
+                    isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                }`}
                 onClick={() => setIsOpen(false)}
             ></div>
-            {/* Menú lateral */}
+
+            {/* Mobile Menu Sidebar */}
             <div
-                className={`fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white z-[9999] transform transition-transform lg:hidden duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}
+                className={`fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white shadow-2xl z-[60] transform transition-transform lg:hidden duration-300 ease-out ${
+                    isOpen ? 'translate-x-0' : 'translate-x-full'
+                }`}
             >
-                <div className="flex justify-between items-center p-4 border-b">
+                <div className="flex justify-between items-center p-6 border-b border-gray-100">
                     <MambaLogo />
-                    <button onClick={() => setIsOpen(false)} aria-label="Cerrar menú">
-                        <IconX className="w-8 h-8 text-mamba-text-dark" />
+                    <button 
+                        onClick={() => setIsOpen(false)} 
+                        aria-label="Cerrar menú"
+                        className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+                    >
+                        <IconX className="w-6 h-6 text-mamba-text-dark" />
                     </button>
                 </div>
-                <nav className="flex flex-col items-center space-y-0 p-8">
+                
+                <nav className="flex flex-col p-6 space-y-2">
                     {navItems.map((item, idx) => (
                         <React.Fragment key={item.path}>
-                            <NavLink to={item.path} onClick={() => setIsOpen(false)} className={({ isActive }) => `text-xl w-full text-center py-4 ${navLinkClasses} ${isActive ? activeLinkClasses : ''}`}>
-                                {item.label}
+                            <NavLink 
+                                to={item.path} 
+                                onClick={() => setIsOpen(false)} 
+                                className={({ isActive }) => `
+                                    relative px-4 py-4 rounded-lg font-semibold transition-all duration-200 group
+                                    ${isActive 
+                                        ? 'text-mamba-blue bg-blue-50 shadow-sm' 
+                                        : 'text-mamba-text-dark hover:text-mamba-blue hover:bg-gray-50'
+                                    }
+                                `}
+                            >
+                                <span className="relative z-10">{item.label}</span>
                             </NavLink>
-                            {idx < navItems.length - 1 && <hr className="w-2/3 mx-auto border-mamba-gray-light" />}
+                            {idx < navItems.length - 1 && (
+                                <hr className="border-gray-100" />
+                            )}
                         </React.Fragment>
                     ))}
-                    <hr className="w-2/3 mx-auto border-mamba-gray-light my-4" />
-                    <Link to="/vender" onClick={() => setIsOpen(false)} className="bg-mamba-blue text-white font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition-all duration-300 w-full text-center text-lg mt-4">
-                        Vende Tu Coche
+                    
+                    <hr className="border-gray-100 my-4" />
+                    
+                    <Link 
+                        to="/vender" 
+                        onClick={() => setIsOpen(false)} 
+                        className="relative bg-gradient-to-r from-mamba-blue to-blue-600 text-white font-bold py-4 px-6 rounded-lg hover:shadow-lg transition-all duration-300 text-center group overflow-hidden"
+                    >
+                        <span className="relative z-10">Vende Tu Coche</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></div>
                     </Link>
                 </nav>
             </div>

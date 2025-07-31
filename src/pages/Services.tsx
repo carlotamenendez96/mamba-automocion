@@ -1,9 +1,8 @@
-import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { PageHero, ServiceCard, IconCar, IconSparkles, IconWrench } from '../components/UI';
-import heroImg from '../assets/hero.png';
-import lavadoImg from '../assets/lavado.jpg';
-import tallerImg from '../assets/taller.jpg';
+import { PageHero, ServiceCard, IconCar, IconSparkles, IconWrench } from '@/components/UI';
+import heroImg from '@/assets/hero.png';
+import lavadoImg from '@/assets/lavado.jpg';
+import tallerImg from '@/assets/taller.jpg';
 
 const services = [
     {

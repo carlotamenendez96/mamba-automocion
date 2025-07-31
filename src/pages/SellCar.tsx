@@ -1,6 +1,5 @@
-import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { PageHero, FormInput, FormTextarea } from '../components/UI';
+import { PageHero, FormInput, FormTextarea } from '@/components/UI';
 import { useForm, ValidationError } from '@formspree/react';
 
 export const SellCarPage = () => {

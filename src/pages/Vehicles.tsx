@@ -1,10 +1,9 @@
-import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { PageHero, CarCard } from '../components/UI';
-import heroImg from '../assets/hero.png';
-import bmwImg from '../assets/coches/bmw.PNG';
-import jeepImg from '../assets/coches/jeep.PNG';
-import mitsubishiImg from '../assets/coches/mitsubishi.PNG';
+import { PageHero, CarCard } from '@/components/UI';
+import heroImg from '@/assets/hero.png';
+import bmwImg from '@/assets/coches/bmw.PNG';
+import jeepImg from '@/assets/coches/jeep.PNG';
+import mitsubishiImg from '@/assets/coches/mitsubishi.PNG';
 
 const sampleCars = [
     {

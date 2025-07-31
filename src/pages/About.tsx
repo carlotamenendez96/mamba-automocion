@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { PageHero, IconUser, IconShieldCheck } from '../components/UI';
-import heroImg from '../assets/hero.png';
+import { PageHero, IconUser, IconShieldCheck } from '@/components/UI';
+import heroImg from '@/assets/hero.png';
 
 const InfoBlock: React.FC<{ icon: React.ReactNode; title: string; children: React.ReactNode }> = ({ icon, title, children }) => (
     <div className="bg-white p-8 rounded-lg shadow-sm">

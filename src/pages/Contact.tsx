@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { PageHero, IconMapPin, IconPhone, IconMail, FormInput, FormTextarea } from '../components/UI';
+import { PageHero, IconMapPin, IconPhone, IconMail, FormInput, FormTextarea } from '@/components/UI';
 import { useForm, ValidationError } from '@formspree/react';
 
 const ContactInfoItem: React.FC<{ icon: React.ReactNode; title: string; children: React.ReactNode }> = ({ icon, title, children }) => (
